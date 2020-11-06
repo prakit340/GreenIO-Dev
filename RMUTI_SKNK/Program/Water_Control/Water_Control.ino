@@ -524,7 +524,10 @@ void callback(char* topic, byte* payload, unsigned int length)
 
 void reconnectMqtt()
 {
-  if ( client.connect("Thingcontrol_AT", deviceToken.c_str(), NULL) )
+  String token = "";
+  token = sett.thingToken;
+  
+  if ( client.connect("Thingcontrol_AT", token.c_str(), NULL) )
   {
     Serial.println( F("Connect MQTT Success."));
     client.subscribe("v1/devices/me/rpc/request/+");
